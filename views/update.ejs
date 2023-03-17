@@ -1,0 +1,94 @@
+<%- include('header') %>
+  <br />
+  <form class="row" action="/update-user" method="POST" id="updateUserRoleForm">
+    <div class="col-md-6">
+      <label class="form-label">Name</label>
+      <select name="name" id="name1" class="form-select" required>
+        <option value="">Name</option>
+        <% user.forEach((user)=> { %>
+          <option value="<%= user.userName %>">
+            <%=user.userName %>
+          </option>
+          <% }) %>
+      </select>
+    </div>
+    <div id="halfSection">
+      <br>
+      <div id="card">
+        <br>
+        <div class="col-md-4" id="role">
+          <label class="form-label">Role</label>
+          <select id="role1" name="role" class="form-select" required>
+            <option value="">Role</option>
+            <option value="null">Null</option>
+            <option value="all">All</option>
+            <option value="read">Read</option>
+            <option value="readWrite">ReadWrite</option>
+
+          </select>
+        </div>
+        <br />
+        <div class="col-md-4" id="database">
+          <label class="form-label">Database</label>
+          <select name="database" id="database1" class="form-select" required>
+            <option value="">Database</option>
+            <option value="null">Null</option>
+            <option value="all">All</option>
+            <% listDatabase.forEach((listDatabase)=> { %>
+              <option value="<%= listDatabase.name %>">
+                <%=listDatabase.name %>
+              </option>
+              <% }) %>
+          </select>
+        </div>
+        <br />
+      </div>
+
+    </div>
+
+    <div id="container1">
+      <br>
+      <button type="button" class="btn btn-primary" id="newField">Add New Role & Database Field </button>
+    </div>
+    <div id="container2">
+      <br>
+      <button type="button" class="btn btn-primary" id="removeNewField">Remove Role & Database Field </button>
+
+    </div>
+
+    <div class="col-md-12">
+      <br>
+      <button class="btn btn-primary form-control" id="updateUserRole">Submit</button>
+    </div>
+
+  </form>
+  </div>
+  <div id="users">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Database Name</th>
+          <th>Role</th>
+          <th>Revoke Role</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+  <div id="main-loading"><img src="images/loader.gif" /></div>
+  </body>
+
+  </html>
+  <script src="scripts/common.js"></script>
+  <script>
+    $(document).ready(function () {
+      JqueryFunction.authentication()
+      JqueryFunction.get_user()
+      $(window).on('load', function () {
+        JqueryFunction.Loading(0)
+      })
+      
+    })
+  </script>

@@ -1,0 +1,82 @@
+<%- include('header') %>
+  <br />
+  <form class="row" action="/user-create" method="POST" id="newUserId">
+    <div class="col-md-6">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" id="name" required>
+      <span></span>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" id="password" required>
+      <span><input type="checkbox" id="checkbox" name="checkbox" value="showPassword"></span>
+      <label for="password">Show password</label>
+    </div>
+
+    <div id="halfSection">
+      <br>
+      <div id="card">
+        <br>
+        <div class="col-md-4" id="role">
+          <label class="form-label">Role</label>
+          <select id="role1" name="role" class="form-select" required>
+            <option value="">Role</option>
+            <option value="null">Null</option>
+            <option value="all">All</option>
+            <option value="read">Read</option>
+            <option value="readWrite">ReadWrite</option>
+
+          </select>
+        </div>
+        <br />
+        <div class="col-md-4" id="database">
+          <label class="form-label">Database</label>
+          <select name="database" id="database1" class="form-select" required>
+            <option value="">Database</option>
+            <option value="null">Null</option>
+            <option value="all">All</option>
+            <% listDatabase.forEach((listDatabase)=> { %>
+              <option value="<%= listDatabase.name %>">
+                <%=listDatabase.name %>
+              </option>
+              <% }) %>
+          </select>
+        </div>
+        <br />
+      </div>
+
+    </div>
+
+    <div id="container1">
+      <br>
+      <button type="button" class="btn btn-primary" id="newField">Add New Role & Database Field </button>
+    </div>
+    <div id="container2">
+      <br>
+      <button type="button" class="btn btn-primary" id="removeNewField">Remove Role & Database Field </button>
+
+    </div>
+    <div class="col-md-12">
+      <br>
+      <button class="btn btn-primary form-control" id="createButton">Submit</button>
+    </div>
+  </form>
+  </div>
+  <div id="main-loading"><img src="images/loader.gif" /></div>
+  </body>
+
+  </html>
+  <script src="scripts/common.js"></script>
+  <script>
+    $(document).ready(function () {
+      JqueryFunction.UsersValidation()
+      JqueryFunction.authentication()
+      $('form').submit(function(){
+        JqueryFunction.Loading(1)
+      })
+      $(window).on('load', function () {
+        JqueryFunction.Loading(0)
+      })
+
+    })
+  </script>

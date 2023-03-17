@@ -1,0 +1,96 @@
+<%- include('header') %>
+  <div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Database and Permission</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i=0; i < OnlyUserName.length;i++) { %>
+          <tr>
+            <th scope="row">
+              <%=i+1%>
+            </th>
+            <td id="nameReset">
+              <%= OnlyUserName[i].userName %>
+            </td>
+            <td>
+              <ul>
+                <% for (var j=0; j < OnlyUserName[i].role.length;j++) { %>
+                  <li>
+                    <%= OnlyUserName[i].role[j].db %> ___________________<%= OnlyUserName[i].role[j].role %>
+                  </li>
+                  <% } %>
+              </ul>
+            </td>
+
+            <td>
+              <select id="ddlDates">
+                <option value="">Action</option>
+                <option value="resetPassword">Reset Password</option>
+                <!-- <option value="dropUser">Drop User</option> -->
+
+              </select>
+            </td>
+          </tr>
+
+          <% } %>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div id="main-loading"><img src="images/loader.gif" /></div>
+  <div id="modalDialog" class="modal">
+    <div class="modal-content animate-top" id="transsitionModal">
+      <div class="modal-header">
+        <h5 class="modal-title">Reset Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form method="post" action="/reset-password" id="contactFrm">
+        <div class="modal-body">
+          <!-- Form submission status -->
+          <div class="response"></div>
+
+          <!-- Contact form -->
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+            <br/>
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+            <span><input type="checkbox" id="checkbox" name="checkbox" value="showPassword"></span>
+            <label for="password">Show password</label>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary modalbutton">Submit</button>
+        </div>
+
+      </form>
+      <div id="connectionString"></div>
+    </div>
+  </div>
+  </body>
+
+  </html>
+  <script src="scripts/common.js"></script>
+  <script>
+    $(document).ready(function () {
+
+      JqueryFunction.authentication()
+      JqueryFunction.resetPassword()
+      $(window).on('load', function () {
+        JqueryFunction.Loading(0)
+      })
+    })
+  </script>

@@ -1,0 +1,29 @@
+body {
+    background-color: #075DA8;
+    max-width: max-content;
+    margin: auto;
+}
+
+#main-loading {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.8);
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1100;
+    display: none;
+}
+
+#main-loading.active,
+.loading.active {
+    display: block;
+}
+
+#main-loading img,
+.loading img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-1000%, -50%);
+}

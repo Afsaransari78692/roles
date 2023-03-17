@@ -1,0 +1,23 @@
+<%- include('header') %>
+  <div class="alert alert-success" role="alert">
+    <%= messages %>
+  </div>
+  <div class="alert alert-primary" role="alert">
+    Connection String =
+    <%= urlToConnectDatabase %>
+  </div>
+  </div>
+  <div id="main-loading"><img src="images/loader.gif" /></div>
+  </body>
+
+  </html>
+  <script src="scripts/common.js"></script>
+  <script>
+    $(document).ready(function () {
+      JqueryFunction.authentication()
+      $(window).on('load', function () {
+        JqueryFunction.Loading(0)
+      })
+
+    })
+  </script>
